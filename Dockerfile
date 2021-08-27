@@ -24,14 +24,9 @@ RUN apt-get update && apt-get install -y \
 
 RUN ln -sf /lib/$(arch)-linux-gnu/libudev.so.1 /lib/$(arch)-linux-gnu/libudev.so.0
 
-RUN groupadd -r chrome && useradd -r -g chrome -G audio,video chrome \
-  && mkdir -p /home/chrome/Downloads && chown -R chrome:chrome /home/chrome
+VOLUME /chrome-user-data
 
 COPY ./chrome-38-files /chrome-38
-
-USER chrome
-
-VOLUME /chrome-user-data
 
 ENTRYPOINT [ "/chrome-38/chrome" ]
 
