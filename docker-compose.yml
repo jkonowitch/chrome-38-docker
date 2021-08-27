@@ -1,0 +1,26 @@
+version: '2'
+services:
+  ide:
+    image: jkonowitch/chrome-38:latest
+    environment:
+      - DISPLAY=novnc:0.0
+    depends_on:
+      - novnc
+    shm_size: 1g
+    volumes:
+      - /path/to/some/local/folder:/chrome-user-data
+    networks:
+      - x11
+  novnc:
+    image: theasp/novnc:latest
+    environment:
+      - RUN_XTERM=no
+      # Adjust screen size
+      - DISPLAY_WIDTH=1920
+      - DISPLAY_HEIGHT=1080
+    ports:
+      - "8080:8080"
+    networks:
+      - x11
+networks:
+  x11:
