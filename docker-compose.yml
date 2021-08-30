@@ -1,6 +1,6 @@
 version: '2'
 services:
-  ide:
+  browser:
     image: jkonowitch/chrome-38:latest
     environment:
       - DISPLAY=novnc:0.0
