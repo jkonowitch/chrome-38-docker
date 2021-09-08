@@ -6,9 +6,12 @@ services:
       - DISPLAY=novnc:0.0
     depends_on:
       - novnc
+    command: ["/wait-for-it.sh", "novnc:6000", "--", "/start-chrome.sh"]
     shm_size: 1g
     volumes:
       - chrome-user-data:/chrome-user-data
+    extra_hosts:
+      - local-tv.onepeloton.com:host-gateway
     networks:
       - x11
   novnc:
